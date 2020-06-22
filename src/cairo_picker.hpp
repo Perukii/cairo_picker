@@ -42,13 +42,13 @@ namespace Capr{
         C_area     area;
 
         struct{ int x;int y; } def_size = {100, 100};
-        int timeout_interval = 1;
+        int timeout_interval = 0;
 
     public:
         C_canvas();
         void run(void(*)(Cairo_cont));
         void set_default_size(int, int);
-        void set_update_interval(int);
+        void set_timeout(int);
 
     protected:
         bool on_timeout();
@@ -59,3 +59,4 @@ namespace Capr{
 
 
 #include "cairo_picker.cpp"
+#include "functions/capr_pictures.cpp"

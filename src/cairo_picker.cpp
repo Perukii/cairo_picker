@@ -50,7 +50,7 @@ namespace Capr{
         def_size.y = h;
     }
 
-    void C_canvas::set_update_interval(int interval = 1 ){
+    void C_canvas::set_timeout(int interval = 1 ){
         timeout_interval = interval;
     }
 
