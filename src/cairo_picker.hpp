@@ -34,7 +34,7 @@ namespace Capr{
 
     // =====
 
-    class C_canvas{
+    class C_picker{
 
     private:
         C_launcher launcher;
@@ -44,7 +44,7 @@ namespace Capr{
         int timeout_interval = 0;
 
     public:
-        C_canvas();
+        C_picker();
         void run(void(*)(Cairo_cont));
 
         void set_title(std::string);

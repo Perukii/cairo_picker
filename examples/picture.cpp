@@ -1,7 +1,7 @@
 
 #include "../src/cairo_picker.hpp"
 
-Capr::C_canvas canvas;
+Capr::C_picker picker;
 Capr::Function::C_picture pic;
 
 void func(Capr::Cairo_cont cr){
@@ -13,8 +13,8 @@ void func(Capr::Cairo_cont cr){
 }
 
 int main(){
-    canvas.set_default_size(400,400);
-    canvas.set_loop(0);
+    picker.set_default_size(400,400);
+    picker.set_loop(0);
     
-    canvas.run(func);
+    picker.run(func);
 }
