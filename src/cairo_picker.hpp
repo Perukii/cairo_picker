@@ -46,15 +46,23 @@ namespace Capr{
     public:
         C_canvas();
         void run(void(*)(Cairo_cont));
-        void set_default_size(int, int);
-        void set_timeout(int);
 
-        unsigned int w();
-        unsigned int h();
+        void set_default_size(uint, uint);
+        void set_loop(uint);
+        void set_key_input(void(*)(uint), void(*)(uint));
+
+        uint w();
+        uint h();
 
 
     protected:
+
+        void(*key_press)(uint);
+        void(*key_release)(uint);
+
         bool on_timeout();
+        bool on_key_press_event(GdkEventKey * event);
+        bool on_key_release_event(GdkEventKey * event);
         
     };
 

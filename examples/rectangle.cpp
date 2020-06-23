@@ -16,7 +16,7 @@ void func(Capr::Cairo_cont cr){             // drawing context
 
 int main(){
     canvas.set_default_size(400,400);       // set window's default size ( 400x400 )
-    canvas.set_timeout(10);                 // update drawing context (interval:10)
+    canvas.set_loop(10);                 // update drawing context (interval:10)
 
     canvas.run(func);                       // run application (function for drawing)
 }

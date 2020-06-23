@@ -14,7 +14,7 @@ void func(Capr::Cairo_cont cr){
 
 int main(){
     canvas.set_default_size(400,400);
-    canvas.set_timeout(0);
+    canvas.set_loop(0);
     
     canvas.run(func);
 }
