@@ -47,6 +47,7 @@ namespace Capr{
         C_canvas();
         void run(void(*)(Cairo_cont));
 
+        void set_title(std::string);
         void set_default_size(uint, uint);
         void set_loop(uint);
         void set_key_input(void(*)(uint), void(*)(uint));

@@ -25,8 +25,11 @@ namespace Capr{
     // =====
 
     C_canvas::C_canvas(){
-        window.set_title("C_canvas");
         window.add(area);
+    }
+
+    void C_canvas::set_title(std::string title){
+        window.set_title(title);
     }
 
     void C_canvas::run( void(*tar_loop_func)(Cairo_cont) = NULL ){
