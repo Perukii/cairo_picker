@@ -18,6 +18,10 @@ namespace Capr::Function{
             Gdk::Cairo::set_source_pixbuf( cr, pixbuf->scale_simple( w, h, Gdk::INTERP_NEAREST ), x, y );
         }
 
+        double w(){ return pixbuf->get_width();  }
+        double h(){ return pixbuf->get_height(); }
+
+
     };
 
 }

@@ -32,7 +32,7 @@ namespace Capr{
 
     void C_canvas::run( void(*tar_loop_func)(Cairo_cont) = NULL ){
         
-        window.set_default_size(def_size.x, def_size.y);
+        
         area.loop_func = tar_loop_func;
         if( timeout_interval != 0 ){
             Glib::signal_timeout().connect(
@@ -46,8 +46,7 @@ namespace Capr{
     }
 
     void C_canvas::set_default_size(int w = 0, int h = 0){
-        def_size.x = w;
-        def_size.y = h;
+        window.set_default_size(w, h);
     }
 
     void C_canvas::set_timeout(int interval = 1 ){
@@ -58,5 +57,8 @@ namespace Capr{
         area.queue_draw();
         return true;
     }
+
+    unsigned int C_canvas::w() { return window.get_width();  }
+    unsigned int C_canvas::h() { return window.get_height(); }
 
 }

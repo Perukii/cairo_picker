@@ -41,7 +41,6 @@ namespace Capr{
         C_window   window;
         C_area     area;
 
-        struct{ int x;int y; } def_size = {100, 100};
         int timeout_interval = 0;
 
     public:
@@ -49,6 +48,10 @@ namespace Capr{
         void run(void(*)(Cairo_cont));
         void set_default_size(int, int);
         void set_timeout(int);
+
+        unsigned int w();
+        unsigned int h();
+
 
     protected:
         bool on_timeout();
