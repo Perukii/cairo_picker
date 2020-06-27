@@ -1,5 +1,6 @@
 
 #include <gtkmm.h>
+#include <cstdio>
 
 namespace Capr{
 
@@ -18,8 +19,6 @@ namespace Capr{
     public:
         C_area();
         void(*loop_func)(Cairo_cont);
-
-    protected:
         bool on_draw(Cairo_cont);
     };
 
@@ -51,6 +50,8 @@ namespace Capr{
         void set_default_size(uint, uint);
         void set_loop(uint);
         void set_key_input(void(*)(uint), void(*)(uint));
+
+        void write_to_png(std::string);
 
         uint w();
         uint h();

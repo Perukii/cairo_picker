@@ -78,6 +78,18 @@ namespace Capr{
         return true;
     }
 
+    void C_picker::write_to_png(std::string filename){
+
+        Cairo::RefPtr<Cairo::ImageSurface> surface =
+            Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, w(), h());
+
+        Cairo_cont cr = Cairo::Context::create(surface);
+        area.on_draw(cr);
+        surface->write_to_png(filename);
+        printf("write_to_png : %s\n", filename.c_str());
+
+    }
+
     uint C_picker::w() { return window.get_width();  }
     uint C_picker::h() { return window.get_height(); }
 
