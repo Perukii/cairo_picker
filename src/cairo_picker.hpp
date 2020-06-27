@@ -55,7 +55,6 @@ namespace Capr{
         uint w();
         uint h();
 
-
     protected:
 
         void(*key_press)(uint);
