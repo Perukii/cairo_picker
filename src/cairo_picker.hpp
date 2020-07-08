@@ -50,6 +50,8 @@ namespace Capr{
         void set_default_size(uint, uint);
         void set_loop(uint);
         void set_key_input(void(*)(uint), void(*)(uint));
+        void set_motion_input(void(*)(uint, uint));
+        void set_button_input(void(*)(uint, uint, uint), void(*)(uint, uint, uint));
 
         void write_to_png(std::string);
 
@@ -60,10 +62,16 @@ namespace Capr{
 
         void(*key_press)(uint);
         void(*key_release)(uint);
+        void(*mouse_motion)(uint, uint);
+        void(*button_press)(uint, uint, uint);
+        void(*button_release)(uint, uint, uint);
 
         bool on_timeout();
-        bool on_key_press_event(GdkEventKey * event);
-        bool on_key_release_event(GdkEventKey * event);
+        bool on_key_press_event(GdkEventKey *);
+        bool on_key_release_event(GdkEventKey *);
+        bool on_motion_notify_event(GdkEventMotion *);
+        bool on_button_press_event(GdkEventButton *);
+        bool on_button_release_event(GdkEventButton *);
         
     };
 

@@ -53,11 +53,6 @@ namespace Capr{
         timeout_interval = interval;
     }
 
-    bool C_picker::on_timeout() {
-        area.queue_draw();
-        return true;
-    }
-
     void C_picker::set_key_input(void(*tar_key_press)(uint), void(*tar_key_release)(uint)) {
         key_press = tar_key_press;
         key_release = tar_key_release;
@@ -66,16 +61,28 @@ namespace Capr{
             sigc::mem_fun(*this, &Capr::C_picker::on_key_press_event) );
         window.signal_key_release_event().connect(
             sigc::mem_fun(*this, &Capr::C_picker::on_key_release_event) );
+
     }
 
-    bool C_picker::on_key_press_event(GdkEventKey * event){
-        if(key_press != NULL) key_press(event->keyval);
-        return true;
+    void C_picker::set_motion_input(void(*tar_mouse_motion)(uint, uint)){
+
+        mouse_motion = tar_mouse_motion;
+
+        window.signal_motion_notify_event().connect(
+            sigc::mem_fun(*this, &Capr::C_picker::on_motion_notify_event) );
+
+
+        window.add_events(Gdk::POINTER_MOTION_MASK);
     }
 
-    bool C_picker::on_key_release_event(GdkEventKey * event){
-        if(key_release != NULL) key_release(event->keyval);
-        return true;
+    void C_picker::set_button_input(void(*tar_button_press)(uint, uint, uint), void(*tar_button_release)(uint, uint, uint)){
+        button_press = tar_button_press;
+        button_release = tar_button_release;
+
+        window.signal_button_press_event().connect(
+            sigc::mem_fun(*this, &Capr::C_picker::on_button_press_event) );
+        window.signal_button_release_event().connect(
+            sigc::mem_fun(*this, &Capr::C_picker::on_button_release_event) );
     }
 
     void C_picker::write_to_png(std::string filename){
@@ -93,4 +100,34 @@ namespace Capr{
     uint C_picker::w() { return window.get_width();  }
     uint C_picker::h() { return window.get_height(); }
 
+    bool C_picker::on_timeout() {
+        area.queue_draw();
+        return true;
+    }
+
+    bool C_picker::on_key_press_event(GdkEventKey * event){
+        if(key_press != NULL) key_press(event->keyval);
+        return true;
+    }
+
+    bool C_picker::on_key_release_event(GdkEventKey * event){
+        if(key_release != NULL) key_release(event->keyval);
+        return true;
+    }
+
+    bool C_picker::on_motion_notify_event(GdkEventMotion * event){
+        if(mouse_motion != NULL) mouse_motion(event->x, event->y);
+        return true;
+    }
+
+    bool C_picker::on_button_press_event(GdkEventButton * event){
+        if(button_press != NULL) button_press(event->button, event->x, event->y);
+        return true;
+    }
+
+    bool C_picker::on_button_release_event(GdkEventButton * event){
+        if(button_release != NULL) button_release(event->button, event->x, event->y);
+        return true;
+    }
+    
 }
