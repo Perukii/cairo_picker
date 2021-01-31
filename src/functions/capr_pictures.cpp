@@ -15,6 +15,13 @@ namespace Capr::Function{
         void set_picture(Capr::Cairo_cont cr, double x, double y, double w, double h){
             Gdk::Cairo::set_source_pixbuf( cr, pixbuf->scale_simple( w, h, Gdk::INTERP_NEAREST ), x, y );
         }
+
+        guchar * get_pixel(int x, int y){
+            Gdk::Pixbuf & image = *pixbuf.operator->();
+            int offset = y*image.get_rowstride() + x*image.get_n_channels();
+            guchar * pixel = &image.get_pixels()[ offset ];
+            return pixel;
+        }
         
 
         double w(){ return pixbuf->get_width();  }
