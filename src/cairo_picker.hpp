@@ -1,6 +1,7 @@
 
 #include <gtkmm.h>
 #include <cstdio>
+#include <functional>
 
 namespace Capr{
 
@@ -18,7 +19,7 @@ namespace Capr{
     class C_area : public Gtk::DrawingArea{
     public:
         C_area();
-        void(*loop_func)(Cairo_cont);
+        std::function<void(Cairo_cont)> loop_func;
         bool on_draw(Cairo_cont);
     };
 
@@ -44,7 +45,8 @@ namespace Capr{
 
     public:
         C_picker();
-        void run(void(*)(Cairo_cont));
+        template<class FUNC>
+        void run(FUNC);
 
         void set_title(std::string);
         void set_default_size(uint, uint);

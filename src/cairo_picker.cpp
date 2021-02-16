@@ -32,7 +32,10 @@ namespace Capr{
         window.set_title(title);
     }
 
-    void C_picker::run( void(*tar_loop_func)(Cairo_cont) = NULL ){
+    //void(*tar_loop_func)(Cairo_cont)
+
+    template<class FUNC>
+    void C_picker::run(FUNC tar_loop_func){
         
         area.loop_func = tar_loop_func;
         if( timeout_interval != 0 ){
